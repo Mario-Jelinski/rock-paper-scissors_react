@@ -5,6 +5,7 @@ class Resultbox extends Component {
 		super(props);
 		this.imgArray = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 		this.framecounter = 0;
+
 	}
 
 	state =  { img1: 'blank', img2: 'blank' };
@@ -15,6 +16,7 @@ class Resultbox extends Component {
 	async startAnimation() {
 
 		if(!this.tick()) {
+			this.props.stop();
 			return;
 		}
 
@@ -29,8 +31,8 @@ class Resultbox extends Component {
 			return false;
 		}
 
-	  let number1 = Math.floor((Math.random() * 3));
-    let number2 = Math.floor((Math.random() * 3));
+	  	let number1 = Math.floor((Math.random() * 3));
+    	let number2 = Math.floor((Math.random() * 3));
 		this.setState({img1: this.imgArray[number1]});
 		this.setState({img2: this.imgArray[number2]});
 		this.framecounter++;
@@ -39,16 +41,26 @@ class Resultbox extends Component {
 	}
 
 	componentDidMount() {
-		this.startAnimation();
+		//this.startAnimation();
+		console.log("bla");
+		console.log(this.props.running);
+	}
+
+	componentWillMount() {
+		console.log("bla2");
 	}
 
 	componentWillUnmount() {
 
 	}
+	getAlert() {
+		alert('clicked');
+	}
 
   render() {
 		let img1 = this.state.img1;
 		let img2 = this.state.img2;
+
     return (
 			<div className="row">
 				<div className="col-md-12 text-center">
